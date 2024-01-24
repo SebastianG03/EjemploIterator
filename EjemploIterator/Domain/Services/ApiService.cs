@@ -1,5 +1,6 @@
 ﻿
 using EjemploIterator.Domain.Iterator;
+using EjemploIterator.Domain.Model;
 using System.Text.Json;
 
 namespace EjemploIterator.Domain.Services
@@ -35,10 +36,13 @@ namespace EjemploIterator.Domain.Services
                 };
 
                 var jsonStream = await response.Content.ReadAsStreamAsync();
-                var res = await JsonSerializer.DeserializeAsync<List<Item>>(jsonStream, jsonOptions);
+                var res = await JsonSerializer.DeserializeAsync<List<ItemModel>>(jsonStream, jsonOptions);
+                List<Item> items = new List<Item>();
+                if(res != null)
+                    res.ForEach(x => items.Add(new Item(x.Nombre, x.Id)));
 
-                Console.WriteLine(res);
-                return res!;
+                    Console.WriteLine(res);
+                return items;
             } catch (HttpRequestException e)
             {
                 Console.WriteLine(e.Message);

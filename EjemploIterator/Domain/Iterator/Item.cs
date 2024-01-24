@@ -15,6 +15,12 @@ namespace EjemploIterator.Domain.Iterator
             Nombre = _nom;
         }
 
+        public Item(string _nom, int id)
+        {
+            Id = id;
+            Nombre = _nom;
+        }
+
         public override string ToString()
         {
             return Nombre;

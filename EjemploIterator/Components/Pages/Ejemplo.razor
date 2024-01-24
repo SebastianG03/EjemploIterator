@@ -10,20 +10,20 @@
 <h1>Ejemplo Iterator</h1>
 
 <button @onclick="LoadItems">Cargar Items</button>
-
+<br><br>
 @if (itemList != null)
 {
-    <table>
+    <table style="border-collapse: collapse; width: 100%;">
         <thead>
             <tr>
-                <th>Nombre</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Nombre</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in itemList)
             {
                 <tr>
-                    <td>@item.Nombre</td>
+                    <td style="border: 1px solid #ddd; padding: 8px;">@item.Nombre</td>
                 </tr>
             }
         </tbody>
@@ -45,19 +45,19 @@ else
     {
         collection.CreateIterator();
         itemList = await ApiService.Singleton().GetItems();
-        foreach(var e in itemList)
+        /*        foreach(var e in itemList)
         {
             collection.Agregar(e);
         }
 
-        iterator = new ConcreteIterator(collection);
+    iterator = new ConcreteIterator(collection);
 
         do
         {
             Console.WriteLine(iterator.CurrentItem());
             iterator.Siguiente();
         } while (iterator.IsDone());
-
+        */
     }
 }
 
